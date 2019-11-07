@@ -1,0 +1,110 @@
+\input{../../preamble.tex}
+
+\newcommand\xor{\oplus}
+
+\newcommand\kHz{\text{kHz}}
+\newcommand\m{\text{m}}
+\newcommand\s{\text{s}}
+
+\DeclareMathOperator{\sinc}{sinc}
+
+\cfgtitle{2}
+\date{Donnerstag 07.11.2019}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{1}
+
+\begin{enumerate}[a)]
+	\item Nein.	
+
+	\item Nein.
+	
+	\item Nein.
+	
+\end{enumerate}
+
+\task{2}{1}
+
+\begin{enumerate}[a)]
+	\item  
+	
+	\begin{itemize}
+		\item Das Nyquist-Shannon-Abtasttheorem schreibt $f_A = 2 \times 14\kHz = 28\kHz$ vor.
+		
+		\item Es tritt der Alias-Effekt auf Damit können nur informationen bis $7\kHz$ vollständig rekonstruiert werden. Ein Signal mit einer frequenz von $14\kHz$ wird z.B. als konstanter wert gemessen und kann nicht vernünftig rekonstruiert werden.
+		
+		\item Es sind insgesamt 8 Bit zur Amplitudendiskretisierung verfügbar, dies ermöglicht theorethisch die darstellung von $2^8 = 256$ zuständen. Da es jedoch ein Vorzeichen-Bit gibt, haben wir die Werte $-0$ und $0$, welche identisch behandelt werden. Somit erhalten wir effektiv $255$ zustände.
+	\end{itemize}
+
+	\item
+	
+	\begin{itemize}
+		\item Die Coderate des (7,4)-Hamming-Codes beträgt $\frac{4}{7} \approx 0.57$
+			
+		\item \texttt{0011 1111} $\underset{\text{(7,4)-H}}{\longmapsto}$ \texttt{0011\green{1}\blue{0}\red{1} 1111\green{0}\blue{0}\red{0}}
+		
+		\begin{itemize}
+			\item $\green{p_1} = u_1 \xor u_2 \xor u_3$
+			\item $\blue{p_2} = u_2 \xor u_3 \xor u_4$
+			\item $\red{p_3} = u_1 \xor u_2 \xor u_4$
+		\end{itemize}		
+		
+		\item Erkannt werden alle ein- und zwei-Bit Fehler. Korrigiert werden können nur ein-Bit Fehler.
+	\end{itemize}
+		
+\end{enumerate}
+
+
+\task{3}{1}
+
+\begin{enumerate}[a)]
+
+	\item 
+	
+	\begin{itemize}
+	
+		\item Nein
+		\item Ja
+		\item Nein, Frequenz wäre $\frac{1}{2\text{T}}$
+	
+	\end{itemize}
+
+	\item Die \emph{Bandbreite} des Übertragungskanales ist definiert als der vorgegebene Frequenzbereich
+	
+	\item \emph{AWGN} wird modelliert mit $r(t) = s(t) + n(t)$. Es soll das Thermische Rauschen in elektronischen Bauteilen repräsentieren. Die einzelnen Terme sind folgendermaßen definiert:
+	
+	\begin{itemize}
+	
+		\item[$r(t)$] Das \textbf{empfangene} Signal
+		\item[$s(t)$] Das \textbf{gesendete} Signal
+		\item[$n(t)$] Sogenannte ,,Gaussian White Noise", also ein \textbf{gaußverteiltes, allfrequentes} Rauschen. Dieser Term wird einfach auf das gesendete Signal addiert, wie der Name suggeriert.
+		
+		
+	\end{itemize}		
+	
+	
+	\item \emph{Ausbreitungsverzögerung (Propagation Delay)} $t_{\text{p}}$ wird definiert als:
+	
+		$$ 
+			t_{\text{p}} := \frac{d}{v \cdot c} = 
+			\frac{\text{Leitungslänge in m}}{\text{Signalgeschwindigkeit in $\frac{\m}{\s}$}} 
+		$$
+		
+		Damit ist die phsikalisch vorgeschrieben Verzögerung die zwischen dem Senden und dem Empfangen des Signales verstreicht gemeint, da die Signalgeschwindigkeit grundsätzlich auf Lichtgeschwindigkeit begrenzt ist.
+	
+	\item Das \emph{Nyquist-Shannon-Abtasttheorem} besagt, dass die Abtastfrequenz $f_A$ mindestens doppelt so hoch sein muss, wie die höchste im Signal vorkommende Frequenz $f_{max}$ um die verlustfreie rekonstruktion aus dem zeitdiskreten Signal zu garantieren ($f_A \geq 2f_{max}$).
+	
+	\bigskip
+	
+	Falls dies nicht gegeben ist, treten Artefakte auf (der sog. Alias-Effekt).
+	
+\end{enumerate}
+
+\pointsttl{3}
+
+\vfill
+
+\end{document}

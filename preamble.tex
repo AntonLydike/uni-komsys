@@ -1,11 +1,21 @@
 \documentclass{article}
 \usepackage{microtype}
 \usepackage[utf8]{inputenc} 
-\usepackage[a4paper, total={6in, 11.5in}]{geometry}
+\usepackage[a4paper, total={6in, 9.6in}]{geometry}
 \usepackage{MnSymbol}
-\usepackage{stmaryrd}
 \usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
 
+%% headers
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kommunikationssysteme WS19/20}
+\lhead{Daniel Schubert, Anton Lydike}
+\rfoot{Seite \thepage}
+
+% simple command to display Aufgabe <num>)       ___ / <num>p.
 \newcommand\task[2]{\section*{Aufgabe #1)\hfill \underline{\,\,\,\,\,\,}\,\,/#2p.}}
 
 % Interpretation (I)
@@ -43,8 +53,16 @@
 % short biimplication
 \newcommand\biimpl{\Leftrightarrow}
 
+% draw a box on the right side of the page
+\newcommand\qed{ \hfill $\Box$ }
+
+% red, green, blue text:
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+
 % more symbols: https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
 
-\newcommand\cfgtitle[1]{\title{Übungsblatt #1 Logik Für Informatiker WS19/20\\%
-\begin{large} Übungsgruppe 1 \end{large}}}
+\newcommand\cfgtitle[1]{\title{\vspace{-1.5cm}Übungsblatt #1\\%
+\begin{large} Übungsgruppe Metcalfe \end{large}} \lfoot{Übungsblatt #1}\cfoot{Übungsgruppe Metcalfe}}
 \author{Daniel Schubert\\Anton Lydike}
