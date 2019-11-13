@@ -1,0 +1,330 @@
+\input{../../preamble.tex}
+
+\usepackage{subcaption} 
+
+\newcommand\kHz{\text{ kHz}}
+\newcommand\m{\text{ m}}
+\newcommand\s{\text{ s}}
+\newcommand\bit{\text{ b}}
+\newcommand\T{\text{T}}
+\newcommand\F{\text{F}}
+\newcommand\C{\text{C}}
+\newcommand\B{\text{B}}
+\newcommand\N{\text{N}}
+\newcommand\W{\text{ W}}
+\newcommand\dB{\text{ dB}}
+\newcommand\dBm{\text{ dBm}}
+
+\cfgtitle{3}
+\date{Mittwoch 13.11.2019}
+
+\newcommand\degr{^\circ}
+
+\newcommand\ptsqr[2]{(#1, #2) (#1+1, #2) (#1, #2+1) (#1+1, #2+1)}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}
+
+\begin{enumerate}[a)]
+	\item Zu übertragende Bitfolge: \texttt{1001 1101}
+	
+	
+\begin{itemize}
+	\item \textit{NRZ-Code:} \\
+		\begin{tikzpicture}
+	        \begin{axis}[
+	          domain=0:8.2,
+	          xmin=0, xmax=8.2,
+	          axis y line*=left,      
+	          axis x line*=top,
+		      x axis line style={draw opacity=0},
+	          height=3cm, width=.8\textwidth,
+	          yticklabels={Low, High},
+	          ytick={-1, 1},
+	          xticklabels={1,,0,,0,,1,,1,,1,,0,,1},
+	          xtick={0.5,1,1.5,2,...,8},
+	          xtick style={draw=none}
+	          ]
+	          
+			\fakeaxis{0}{8.2}
+	          
+			\addplot [blue] coordinates {
+				\sighi{0}{1}
+				\siglo{1}{3}
+				\sighi{3}{6}
+				\siglo{6}{7}
+				\sighi{7}{8}
+			};
+		\end{axis}
+    	\end{tikzpicture}
+	
+	\item \textit{Manchester-Code:} 
+	
+		\begin{tikzpicture}
+	        \begin{axis}[
+	          domain=0:8.2,
+	          xmin=0, xmax=8.2,
+	          axis y line*=left,      
+	          axis x line*=top,
+		      x axis line style={draw opacity=0},
+	          height=3cm, width=.8\textwidth,
+	          yticklabels={Low, High},
+	          ytick={-1, 1},
+	          xticklabels={1,,0,,0,,1,,1,,1,,0,,1},
+	          xtick={0.5,1,1.5,2,...,8},
+	          xtick style={draw=none}
+	          ]
+	          
+			\fakeaxis{0}{8.2}
+	          
+			\addplot [blue] coordinates {
+				(0,1)
+				\htl{0.5}
+				\lth{1.5}
+				\htl{2}
+				\lth{2.5}
+				\htl{3.5}
+				\lth{4}
+				\htl{4.5}
+				\lth{5}
+				\htl{5.5}
+				\lth{6.5}
+				\htl{7.5}
+				(8, -1)
+			};
+		\end{axis}
+    	\end{tikzpicture}
+	
+	\item \textit{Differentieller Manchester-Code:}	
+	
+		\begin{tikzpicture}
+	        \begin{axis}[
+	          domain=0:8.2,
+	          xmin=0, xmax=8.2,
+	          axis y line*=left,      
+	          axis x line*=top,
+		      x axis line style={draw opacity=0},
+	          height=3cm, width=.8\textwidth,
+	          yticklabels={Low, High},
+	          ytick={-1, 1},
+	          xticklabels={1,,0,,0,,1,,1,,1,,0,,1},
+	          xtick={0.5,1,1.5,2,...,8},
+	          xtick style={draw=none}
+	          ]
+	          
+			\fakeaxis{0}{8.2}
+	        
+			\addplot [blue] coordinates {
+				(0,1) 
+				\sigtick{0.5}{1}
+				\sigtick{1.5}{2}
+				\sigtick{2.5}{3.5}
+				\sigtick{4.5}{5.5}
+				\sigtick{6}{6.5}
+				\htl{7.5}
+				(8, -1)
+			};
+		\end{axis}
+    	\end{tikzpicture}	
+	
+		\item \textit{MLT-3-Code:}
+	
+			\begin{tikzpicture}
+	        \begin{axis}[
+	          domain=0:8.2,
+	          xmin=0, xmax=8.2,
+	          axis y line*=left,      
+	          axis x line*=top,
+		      x axis line style={draw opacity=0},
+	          height=3cm, width=.8\textwidth,
+	          yticklabels={Low,Null,High},
+	          ytick={-1,0, 1},
+	          xticklabels={1,,0,,0,,1,,1,,1,,0,,1},
+	          xtick={0.5,1,1.5,2,...,8},
+	          xtick style={draw=none}
+	          ]
+	          
+			\fakeaxis{0}{8.2}
+	    	      
+				\addplot [blue] coordinates {
+					\sighi{0}{3}
+					\sigmed{3}{4}
+					\siglo{4}{5}
+					\sigmed{5}{7}
+					\sighi{7}{8}
+				};
+			\end{axis}	
+		\end{tikzpicture}
+	
+	\end{itemize}
+	
+	\item
+	
+	\begin{itemize}
+		\item Nein.
+		\item Ja.
+		\item Ja.
+		\item Nen, da die ,,Art der verwendeten Grundimpulse und deren Abfolge`` keine Einfluss auf den verwendeten Frequenzbereich haben sollte.
+	\end{itemize}
+\end{enumerate}
+
+\task{2}
+
+
+\begin{enumerate}[a)]
+	\item 
+		\begin{itemize}
+			\item Hier handelt es sich um FSK
+			\item FSK ist daran zu erkennen, dass die Frequenz des Trägersignales verändert wird um verschiedene zustände im Datensignal dar zu stellen.
+		\end{itemize}
+
+	\item
+
+	\pagebreak
+
+	\begin{itemize}
+		\item Das Konstellationsdiagramm sieht aus wie folgt:
+			
+		\begin{figure}[!ht] 
+		\centering
+		\begin{tikzpicture}
+			\pgfplotsset{set layers}
+	        \begin{axis}[
+	          xmin=-3, xmax=3,
+	          ymin=-3, ymax=3,
+	          axis y line*=center,
+	          axis x line*=center,
+	          height=4cm, width=4cm,
+	          yticklabels={},
+	          xticklabels={},
+	          tick style={draw=none},
+	          xlabel=180,
+			  ylabel=270,
+    	      every axis y label/.style={at=(current axis.below origin),anchor=north},
+	          every axis x label/.style={at=(current axis.left of origin),anchor=east}  
+	          ]
+	          
+	          \addplot[blue, mark=*, only marks] coordinates {
+				\ptsqr{0.5}{0.5}
+				\ptsqr{-1.5}{0.5}
+				\ptsqr{-1.5}{-1.5}
+				\ptsqr{0.5}{-1.5}
+	          };
+	        
+			\end{axis}
+		
+	        \begin{axis}[
+	          xmin=-3, xmax=3,
+	          ymin=-3, ymax=3,
+	          axis y line*=center,
+	          axis x line*=center,
+	          axis line style={draw=none},
+	          height=4cm, width=4cm,
+	          yticklabels={},
+	          xticklabels={},
+	          tick style={draw=none},
+	          xlabel=0,
+			  ylabel=90,
+    	      every axis y label/.style={at=(current axis.above origin),anchor=south},
+	          every axis x label/.style={at=(current axis.right of origin),anchor=west}
+	          ]
+	          \end{axis}
+    	\end{tikzpicture}	
+    	\end{figure}
+		
+		\item 25\% und 75\%
+			
+		\item Folgende Winkel definieren folgende Zustände:
+		\begin{figure}[!ht] 
+			\centering
+			\begin{subfigure}[b]{0.4\textwidth}
+		\begin{align*}22,5\degr &\to 0001 		\\
+			45° &\to 0000, 0011		\\
+			67,5\degr &\to 0010		\\
+			112,5\degr &\to 1001		\\
+			135\degr &\to 1000, 1011		\\
+			157,5\degr &\to 1010		
+		\end{align*}
+			\end{subfigure}
+			\begin{subfigure}[b]{0.4\textwidth}
+		\begin{align*}202,5\degr &\to 1101		\\
+			225\degr &\to 1100, 1111		\\
+			247,5\degr &\to 1110		\\
+			292,5\degr &\to 0101		\\
+			315\degr &\to 0100, 0111		\\
+			337,5\degr &\to 0110
+		\end{align*}
+			\end{subfigure}
+		\end{figure}
+	\end{itemize}
+	
+	\item Gegeben sei $\T = 100 \mu \s$ im ein 64-QAM-Verfahren, also ist $\N = 64\bit$
+	
+		\begin{align*}
+			\frac{1}{\T} \cdot \log_2(\N)	&= \frac{1}{100\mu \s} \cdot \log_2(64\bit) \\
+											&= \frac{1}{10^{-4} \s} \cdot 6\bit \\
+											&= 6 \cdot 10^{4}\text{ bps} \\
+											&= 60 \text{ kbps} \\
+		\end{align*}
+
+	\item Angenommen eine Bitrate von 100 Mbps und ein 16-QAM-Verfahren. Daraus folgt, dass $\T = 25 \mu \s$. Das ergibt eine Baudrate von $$\frac{1}{\T} = 25\cdot 10^6 \text{ Baut} = 25 \text{ MBaut}$$
+
+\end{enumerate}
+
+\task{3}
+
+\begin{enumerate}[a)]
+	\item 
+		\begin{enumerate}
+			\item[] Rechner A)
+				\begin{align*}
+	\text{Ausbreitungsverzögerung } t_{p_A} &= \frac{d_A}{v_A} = \frac{3\m}{2\cdot 10^8 \frac{\m}{\s}} &= 1,5\cdot 10^{-8}\s \\	
+	\text{Übertragungsverzögerung } t_{s_A} &= \frac{L}{R_A} = \frac{1.500 \cdot 8\bit}{16 \cdot 10^9 \frac{\bit}{\s}} &= 7,5\cdot 10^{-7}\s
+				\end{align*}
+				
+			\item[] Rechner B)
+				\begin{align*}
+	\text{Ausbreitungsverzögerung } t_{p_B} &= \frac{d_B}{v_B} = \frac{10\m}{3\cdot 10^8 \frac{\m}{\s}} &= 3\cdot 10^{-7}\s \\	
+	\text{Übertragungsverzögerung } t_{s_B} &= \frac{L}{R_B} = \frac{1.500 \cdot 8\bit}{600 \cdot 10^6 \frac{\bit}{\s}} &= 2\cdot 10^{-5}\s
+				\end{align*}
+		\end{enumerate}
+		
+		Insgesamt $2,1065\cdot 10^{-5}\s$
+		
+		\item 
+			
+			$$ \F = \frac{\text{P}}{\text{P}_e} \iff \text{P}_e = \frac{20\W}{120\dB} \approx 0,167 \W \approx 22,22\dBm $$	
+		
+		\item 
+	
+			\begin{itemize}
+				\item $10 \dB$
+				\item $ \text{Dämpfung [dB]} = 10 \cdot \log_{10}{\frac{1\W}{100\text{ mW}}} = 10\dB $
+			\end{itemize}					
+		
+		\item  Die Bandbreite B des Übertragungsweges bestimmt die maximal mögliche Symbolrate:
+		
+			$$ \C = \B \cdot \log_2(1+\text{SNR}) \text{ bps} $$
+			
+			Die Stärke der Störungen $\text{SNR} = \frac{\text{P}_\text{signal}}{\text{P}_\text{noise}}$ begrenzt den maximalen Informationsgehalt eines Symbols
+			
+			
+		\item 
+		
+			\begin{itemize}
+				\item Richtig
+				\item Richtig
+				\item Falsch
+			\end{itemize}
+\end{enumerate}
+
+
+
+\pointsttl{3}
+
+
+
+\end{document}
