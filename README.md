@@ -1,4 +1,4 @@
-# Übungsblätter der Vorlesung "Logik für Informatiker WS 19/20"
+# Übungsblätter der Vorlesung "Kommunikationssysteme WS 19/20"
 
 
 
