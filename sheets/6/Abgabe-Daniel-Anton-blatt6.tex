@@ -1,0 +1,113 @@
+\input{../../preamble.tex}
+
+\usepackage{multicol,tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\renewcommand{\arraystretch}{1.5}
+
+\cfgtitle{6}
+\date{Mittwoch 4.12.2019}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}
+
+\begin{enumerate}[a)]
+	\item Grafik wie in Folie 11. Internet IP
+	\item "So gut wie möglich" das paket mit den aktuell vorhandenen Ressourcen zustellen.
+	\item \begin{itemize}
+		\item Wahr
+		\item Falsch
+		\item Wahr
+		\item Wahr
+	\end{itemize}
+	\item \begin{itemize}
+		\item \textit{Time To Live} bezeichnet die Anzahl der "Hops" durch Knoten, bevor das Package nicht mehr weitergeleitet wird. Das TTL-Feld wird von jedem Router dekrementiert.
+		\item Das \textit{Protocol}-Feld enthält die Nummer des Protokolls der höheren Schicht, zu dem die im IPv4-Paket transportierten Nutzdaten gehören
+	\end{itemize}
+	\item \begin{itemize}
+		\item Das \textit{Checksum}-Feld fällt weg. Dieses musste bei jedem Hop neu berechnet werden, da das TTL-Feld dekrementiert wird.
+		\item Starke vereinfachung des Paketaufbaus, nur 8 statt 13 header Feldern.
+	\end{itemize}
+\end{enumerate}
+
+
+\task{2}
+
+\begin{enumerate}[a)]
+	\item \begin{itemize}
+		\item Verbindung Host A – R1:
+		
+		\begin{tabular}{c|c|c|c|c}
+		\textit{Paket / Fragment} & \textit{Total Length} & \textit{Identification} & \textit{MF Flag} & \textit{Fragment Offset} \\ \hline
+		1 & 1480 Byte & $x$ & 0 & 0 
+		\end{tabular}	
+		
+		
+		\item Verbindung Host R1 – R2:
+		
+		\begin{tabular}{c|c|c|c|c}
+		\textit{Paket / Fragment} & \textit{Total Length} & \textit{Identification} & \textit{MF Flag} & \textit{Fragment Offset} \\ \hline
+		1.1 & 1220 Byte & $x$ & 1 & 0 \\
+		1.2 &  300 Byte & $x$ & 0 & 150 
+		\end{tabular}
+		
+		\item Verbindung Host R2 – B:
+		
+		\begin{tabular}{c|c|c|c|c}
+		\textit{Paket / Fragment} & \textit{Total Length} & \textit{Identification} & \textit{MF Flag} & \textit{Fragment Offset} \\ \hline
+		1.1.1 & 580 Byte & $x$ & 1 & 0 \\
+		1.1.2 & 580 Byte & $x$ & 1 & 70 \\
+		1.1.3 & 120 Byte & $x$ & 0 & 140 \\
+		1.2   & 300 Byte & $x$ & 0 & 150 
+		
+		\end{tabular}	
+	
+	\end{itemize}
+	
+	\item Wenn die \textit{MF-Flag} gesetzt ist, oder das \textit{Fragment-Offset} nicht null ist.
+	\item Fragmentierung ist während der Übertragung aus Performance-Gründen nicht mehr erlaubt. Nur der Absender darf Pakete fragmentieren: Hierfür wird der ,,Fragment'' Extension Header verwendet
+\end{enumerate}
+
+
+\task{3}
+
+\begin{enumerate}[a)]
+	\item Sende \textit{ICMP Echo-Request-Packages} mit \textit{TTL} $= 1,\dots,n$ wobei $n$ entweder die Anzahl der hops bis zum Zielhost, oder die maximale Anzahl der hops ist, je nach dem, welcher wert kleiner ist. Anhand der \textit{Echo-Packages}, die entstehen, wenn das jeweilige Package das ende seiner \textit{TTL} erreicht, kann die verwendete Route nachvollzogen werden.
+
+	\item \begin{itemize}
+		\item Wahr
+		\item Falsch
+		\item Falsch
+		\item Wahr
+	\end{itemize}
+	
+	\item \begin{itemize}
+		\item 
+		\item \texttt{traceroute -I -w 10 -q 1- m 5 192.168.5.1}
+		
+		\begin{tabular}{|r|l|r|l|}
+			\hline
+			\multicolumn{2}{|c|}{\textbf{1. Nachricht}} & \multicolumn{2}{c|}{\textbf{Antwort}} \\ \hline
+			Sendeadresse:    & 192.168.1.1 & Sendeadresse:    & 192.168.1.254 \\ \hline
+			Empfangsadresse: & 192.168.5.1 & Empfangsadresse: & 192.168.1.1 \\ \hline
+			Nachrichtentyp:  & ICMP        & Nachrichtentyp:  & ICMP \\ \hline
+			TTL-Wert:        & 1           & Information:     & Typ 11, Code 0 \\ 
+			\hline \hline
+			\multicolumn{2}{|c|}{\textbf{Letzte Nachricht}} & \multicolumn{2}{c|}{\textbf{Antwort}} \\ \hline
+			Sendeadresse:    & 192.168.1.1 & Sendeadresse:    & 192.168.5.254 \\ \hline
+			Empfangsadresse: & 192.168.5.1 & Empfangsadresse: & 192.168.1.1 \\ \hline
+			Nachrichtentyp:  & ICMP        & Nachrichtentyp:  & ICMP \\ \hline
+			TTL-Wert:        & 5           & Information:     & Typ 11, Code 0 \\ \hline
+			 
+		\end{tabular}
+	\end{itemize}
+\end{enumerate}
+
+\pointsttl{3}
+
+
+\end{document}

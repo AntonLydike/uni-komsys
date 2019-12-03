@@ -1,0 +1,113 @@
+\input{../../preamble.tex}
+
+\usepackage{multicol,tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\renewcommand{\arraystretch}{1.5}
+
+\cfgtitle{5}
+\date{Mittwoch 27.11.2019}
+
+
+\renewcommand{\L}{\text{L}}
+\newcommand{\R}{\text{R}}
+\newcommand\Ssend{\text{S}_{\text{send}}}
+\newcommand{\bits}{\text{ b}}
+
+\newcommand\lal[1]{\multicolumn{1}{c|}{#1}}
+\newcommand\lale[1]{\multicolumn{1}{c}{#1}}
+
+\renewcommand{\iff}{\Leftrightarrow}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}
+
+\begin{enumerate}[a)]
+	\item \begin{tabular}{c|c|c|c|c|c||c|c|c|c|c|c||c|c|c|c|c|c}
+	 \multicolumn{6}{c||}{1. Schritt} & \multicolumn{6}{c||}{2. Schritt} & \multicolumn{6}{c}{3. Schritt}  \\ \hline
+	  &A&B&C&D&E&   &A&B&C&D&E&   &A&B&C&D&E  \\ \hline
+	A &0&1&\infty &\infty &8& A &0&1&3&10&7& A &0&1&3&9&4 \\ \hline
+	B & &0&2&\infty &6& B & &0&2&8&3& B & &0&2&5&3  \\ \hline
+	C & & &0&\infty &1 & C & & &0&3&1& C & & &0&3&1 \\ \hline
+	D & & & &0&2& D & & & &0&2& D & & & &0&2   \\ \hline
+	E & & & & &0& E & & & & &0& E & & & & &0  \\ 
+	
+	\end{tabular}
+	
+	
+	\item Beste ist $D_B(C)=4$, aber beste richtige ist $D_B(C)=7$
+	
+	\item 
+	
+	\begin{tabular}{l|l|l|l|l|l}
+	\lal{Iteration} & \lal{N'}&\lal{D(B), p(B)}  & \lal{D(C), p(C)}  & \lal{D(D), p(D)}  & \lale{D(E), p(E)}  \\ \hline
+	0         &A        &1, A          &\infty       &\infty       &8, A          \\
+	1         &A, B      &1, A          & 3, B         &10, E         &7, B          \\
+	2         &A, B, C    & 1 ,A         & 3, B         &10, E         &7, B          \\
+	3         &A, B, C, E  & 1, A         & 3, B         &9, E          &4, C          \\
+	4         &A, B, C, E, D& 1, A         & 3, B         &6, E          &4, C          \\
+	
+	
+	\end{tabular}
+\end{enumerate}
+
+\task{2}
+
+
+\begin{enumerate}[a)]
+\item 
+	\begin{enumerate}[1)]
+		\item $B \overset{2}{\to} A \overset{3}{\to} D$
+		\item $D \overset{3}{\to} A \overset{2}{\to} B  \overset{1}{\to} E$
+		\item $C \overset{2}{\to} A \overset{3}{\to} D$
+		\item $B \overset{2}{\to} A \overset{3}{\to} D$
+	\end{enumerate}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[trim = 0cm 4cm 0cm 4cm,width=13cm]{table.pdf}
+	\end{figure}
+
+\item \begin{itemize}
+
+
+		\item Während der Lernperiode ist das Routing nicht optimal.
+		\item Da Ausfälle/Überlastungen nicht mitgeteilt werden, müssen tabellen periodisch alle informationen vergessen und neu initialistert werden.	
+	
+	\end{itemize}
+
+\end{enumerate}
+
+\task{3}
+
+\begin{enumerate}[a)]
+
+\item Bei der \textit{verbindungsorientierten Kommunikation} ist eine Wegsuche Notwendig und die Sendereihenfolge wird strikt eingehalten. Bei der \textit{verbindungslosen Kommunikation} wird keine Wegsuche betrieben, stattdessen werden die Pakete einfach einzeln auf die Reise geschickt und können unterschiedliche Pfade beschreiten. Hierbei verlässt man sich auf die Entscheidungen der Router auf dem Weg.
+\item 
+	\begin{itemize}
+		\item Richtig
+		\item Richtig
+		\item Falsch, da die Packetvermittlung ein Oberbegriff für verschiedene Strategien ist. Es existieren Packetvermittlungen, für welche die Aussage stimmt, und andere, für die das nicht gilt.
+		\item Falsch
+	\end{itemize}
+
+\item \textit{Broadcast} ist eine Nachricht an alle erreichbaren Hosts, während ein \textit{Multicast} nur an ein subset der erreichbaren Hosts adressiert ist.
+\item \textit{HELLO-Pakete} werden verwendet, um festzustellen, ob ein Netzwerkpartner noch am Leben ist. Außerdem werden sie von neuen Netzwerkteilnehmern emitiert, wenn sie einem Netzwerk beitreten. \textit{Link-State-Advertisement} wird verwendet, um deine direkten Nachbarn (zusammen mit den Kosten der Verbindung) an die große, weite Welt zu broadcasten.
+\item
+	\begin{tabular}{r c c}
+					& \textit{Link-State} & \textit{Backwards Learning} \\
+		StatischesRouting: & \bigcirc     & $\bigotimes$ \\
+		AdaptivesRouting:  & $\bigotimes$ & \bigcirc \\
+		VerteiltesRouting: & $\bigotimes$ & $\bigotimes$ \\
+		IsoliertesRouting: & \bigcirc     & $\bigotimes$ \\
+	\end{tabular}
+
+\end{enumerate}
+
+\pointsttl{3}
+
+
+\end{document}

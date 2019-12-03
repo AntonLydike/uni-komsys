@@ -9,6 +9,7 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{marvosym}
 
 \widowpenalties=4 10000 10000 150 0
 
@@ -61,8 +62,11 @@
 \newcommand\qed{ \hfill $\Box$ }
 
 % red, green, blue text:
+
+\definecolor{greeen}{RGB}{34,139,34}
+
 \newcommand\red[1]{\textcolor{red}{#1}}
-\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\green[1]{\textcolor{greeen}{#1}}
 \newcommand\blue[1]{\textcolor{blue}{#1}}
 
 % more symbols: https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
@@ -91,3 +95,13 @@
 
 \newcommand\fakeaxis[2]{\addplot [-stealth,black] coordinates {(#1,0) (#2,0)};}
 
+
+
+%% units
+\newcommand\m{\text{ m}}
+\newcommand\s{\text{ s}}
+\newcommand\mps{\frac{\text{m}}{\text{s}}}
+\newcommand\Gbps{\text{ Gbps}}
+\newcommand\bps{\text{ bps}}
+\newcommand\bit{\text{ b}}
+\newcommand\B{\text{ B}}
