@@ -16,7 +16,11 @@
 \task{1}
 
 \begin{enumerate}[a)]
-	\item Grafik wie in Folie 11. Internet IP
+	\item \hfill 
+		\begin{center}
+			\includesvg[width=0.8\textwidth]{./the_internet.svg}
+		\end{center}
+
 	\item "So gut wie möglich" das paket mit den aktuell vorhandenen Ressourcen zustellen.
 	\item \begin{itemize}
 		\item Wahr
@@ -86,7 +90,12 @@
 	\end{itemize}
 	
 	\item \begin{itemize}
-		\item 
+		\item \begin{itemize}
+			\item \textit{Echo-Request} (Type 8, Code 0)
+			\item \textit{Echo-Reply} (Type 0, Code 0)
+			\item \textit{Echo-Request} (Type 8, Code 0)
+			\item \textit{Echo-Reply} (Type 0, Code 0)
+		\end{itemize}
 		\item \texttt{traceroute -I -w 10 -q 1- m 5 192.168.5.1}
 		
 		\begin{tabular}{|r|l|r|l|}
