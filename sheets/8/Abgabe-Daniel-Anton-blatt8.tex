@@ -1,0 +1,79 @@
+\input{../../preamble.tex}
+
+\pgfplotsset{compat=1.15}
+
+\renewcommand{\arraystretch}{1.5}
+
+\cfgtitle{8}
+\date{Mittwoch 18.12.2019}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}
+\begin{enumerate}[a)]
+	\item \begin{itemize}
+		\item  \textbf{TCP-Flusskontrolle:} Auf Netzebene ist der TCP-Empfänger vor einem zu großen Zufluss von Segmenten eines TCP-Senders zu schützen
+		\item \textbf{TCP-Überlastkontrolle:} Ende-zu-Ende-Mechanismus, um Stausituationen zu vermeiden und Auswirkungen von Staus zu begrenzen
+	\end{itemize}
+	\item Empfänger teilt Sender über das Header-Feld \textit{window-size} die aktuelle größe des Empfangsfensters mit.
+	\item \textit{Window-Size = 0} blockiert vorläufig den sendenden Prozess und führt zu der Anpassung der \textit{Maximum Segment Size} (MSS). Dieser zustand wird durch die Mithilfe der Zero-Window-Probe behoben.
+	\item Das Congestion Window wird beim Sender mitgeführt und beschränkt die Rate, mit der ein Sender Verkehr ins Netz senden kann.
+	\item \begin{itemize}
+		\item ACKs kommen an, \textit{window-size} bleibt gleich $\Rightarrow$ Send\_Window nach rechts.
+		\item ACKs kommen an, \textit{window-size} ist 0 $\Rightarrow$ Senden wird blockiert.
+		\item Drei gleiche ACKs kommen an $\Rightarrow$ Fast Recovery.
+	\end{itemize}
+\end{enumerate}
+
+\task{2}
+\begin{enumerate}[a)]
+	\item 
+	\item \hfill \begin{center}
+		\includegraphics{{2b.plot}.pdf}
+	\end{center}
+	\item \hfill \begin{center}
+		\includegraphics{{2c.plot}.pdf}
+	\end{center}
+\end{enumerate}
+
+\task{3}
+\begin{enumerate}[a)]
+	\item \begin{itemize}
+		      \item 8.8.8.8 ist \textbf{keine} Adresse die für die Nutzung in privaten Netzwerken freigegeben ist.
+		      \item \textbf{Ja}, da 127.0.126.1 eine sog. loopback-Adresse ist.
+		      \item 192.168.1.255/24 ist \textbf{keine} Broadcast-Adresse im \texttt{/19}-er Raum, da das dritte oktett Nullen enthält, wo laut netzmaske nur einsen sein sollten.
+		      \item 137.250.172.0/19 ist \textbf{keine} Netzadresse, da das dritte oktett (\texttt{10101100}) noch Einsen enthält, wo laut Netzmaske schon keine mehr sein sollten.
+	      \end{itemize}
+	\item Eine CIDR-Rotation von 123.122.121.120/19 erzeugt:
+	      \begin{itemize}
+		      \item Die Subnetzmaske 255.255.224.0
+		      \item Die Netzadresse 123.122.96.0, die man erhält, wenn man die host ID mit der Subnetzmaske und-verknüpft (123.122.121.120 \& 255.255.224.0)
+		      \item Und die Broadcast-Adresse 123.122.127.255
+	      \end{itemize}
+	\item \begin{itemize}
+		      \item \texttt{::f} ist \textbf{eine} valide IPv6 Adresse.
+		      \item \texttt{ff01::fb} ist \textbf{eine} valide IPv6 Adresse.
+		      \item \texttt{fe:80:02:02:b3:13} ist \textbf{keine} valide IPv6 Adresse, da zwei Segmente a 16 bit fehlen.
+		      \item \texttt{2019:4g:2020:e1f2::13} ist \textbf{keine} valide IPv6 Adresse, da \texttt{g} keine Hexadezimalzahl ist.
+	      \end{itemize}
+	\item Die gegebene IPv6-Adresse \texttt{2001:0db8:0000:0067:0230:0000:0001:ff00} ist
+	    \begin{itemize}
+			\item in kurzform geschrieben \texttt{2001:db8:0:67:230:0:1:ff00}
+			\item eine Global-Unicast-Adresse
+	    \end{itemize}
+	\item Link-Local-Adressen sind nur innerhalb des lokalen Netzwerks gültig
+\end{enumerate}
+
+
+
+% 11111111.11111111.11100000.00000000
+%!00000000.00000000.00011111.11111111
+% 123     .122     .01111001.**
+% 123     .122     .01111111.11111111
+
+\pointsttl{3}
+
+
+\end{document}
