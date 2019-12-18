@@ -23,15 +23,20 @@
         grid = both,
       ]
       
-      \addplot+[sharp plot] coordinates {
+        \addplot+[sharp plot] coordinates {
             (0,1) 
             (1,2)
             (2,4)
             (3,8)
-            (4,16)
-            (5,1)
-            (6,2)
+            (4,9)
+            (5,10)
+            (6,10)
         };
+
+        \addplot+[sharp plot,orange,mark options={fill=orange}] coordinates {
+            (0,10)
+            (7,10)
+        } node [above,pos=0.2,text opacity=1] {Window Size};
 
     \end{axis}
 \end{tikzpicture}
