@@ -1,0 +1,78 @@
+\input{../../preamble.tex}
+
+\pgfplotsset{compat=1.15}
+
+\renewcommand{\arraystretch}{1.5}
+
+\cfgtitle{9}
+\date{Mittwoch 8.1.2020}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}
+\begin{enumerate}[a)]
+	\item Eine möglich Aufteilung des Subnetzes 100.90.80.0/20 sieht aus wie folgt: \\
+	\begin{tabular}{c|c|c|c}
+				Name des Subnetzes & Anzahl der IP-Adressem & Präfixnotation   & Broadcast     \\ \hline
+				A 				   & 128                    & 100.90.80.0/25   & 100.90.80.127 \\
+				B 				   & 1024                   & 100.90.84.0/22   & 100.90.87.255 \\
+				C 				   & 2048                   & 100.90.88.0/21   & 100.90.95.255 \\
+				D 				   & 512                    & 100.90.82.0/23   & 100.90.83.255 \\
+				E 				   & 128                    & 100.90.80.128/25 & 100.90.80.255
+		\end{tabular}
+	\item Das Subnetz \texttt{2001:db8:1::/48} in acht gleichgroße Subnetze aufgeteilt. Das erste Subnetz wird notiert mit 
+	\texttt{2001:db8:1::/51} und das Letzte mit \texttt{2001:db8:1:e000/51}.
+	
+\end{enumerate}
+
+\task{2}
+\begin{enumerate}[a)]
+	
+	\item \begin{itemize}
+		\item \textit{ARP} wird auf L2 verwendet um Mac-Adressen zu ermitteln
+		\item \textit{DHCP} wird auf L3 verwendet um neuen Hosts in einem Netzwerk 
+		dynamisch eine IP-Adresse zuzuweisen.
+	\end{itemize}
+	
+	\item 
+	\begin{itemize} 
+		\item Host E → Host A 
+		\begin{itemize}
+			\item Host A ermittelt Mac-Adresse von Router R3
+			\item Router R3 Ermittelt Mac-Adresse von Router R2
+			\item Router R2 ermittelt Mac-Adresse von Host A
+		\end{itemize}
+		\item Host C → Host D
+		\begin{itemize}
+			\item Host C ermittelt Mac-Adresse von Router R2
+			\item Router 2 Ermittelt Mac-Adresse von Host D
+		\end{itemize}
+	\end{itemize}
+
+	\item Nach dem SLAAC verfahren, stellt gehört IPv6 Adresse \texttt{fe80::202:2ff:fe02:123} zur Mac-Adresse \texttt{00:02:02:02:01:23}
+	
+	\item 
+
+\end{enumerate}
+
+\task{3}
+\begin{enumerate}[a)]
+	
+	\item 
+	
+	\item 
+	
+	\item 
+	
+	\item 
+	
+	\item 
+
+\end{enumerate}
+
+\pointsttl{3}
+
+
+\end{document}
