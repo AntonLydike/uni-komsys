@@ -4,6 +4,8 @@
 
 \renewcommand{\arraystretch}{1.5}
 
+\newcommand\tunderset[2]{\underset{\text{#1}}{\text{#2}}}
+
 \cfgtitle{9}
 \date{Mittwoch 8.1.2020}
 
@@ -40,7 +42,7 @@
 	\begin{itemize} 
 		\item Host E → Host A 
 		\begin{itemize}
-			\item Host A ermittelt Mac-Adresse von Router R3
+			\item Host E sendet IP Datengram ermittelt Mac-Adresse von Router R3
 			\item Router R3 Ermittelt Mac-Adresse von Router R2
 			\item Router R2 ermittelt Mac-Adresse von Host A
 		\end{itemize}
@@ -53,22 +55,68 @@
 
 	\item Nach dem SLAAC verfahren, stellt gehört IPv6 Adresse \texttt{fe80::202:2ff:fe02:123} zur Mac-Adresse \texttt{00:02:02:02:01:23}
 	
-	\item 
+	\item \begin{itemize}
+		\item Sende \textit{DHCP-Discover} per IP-Broadcast (Adresse 255.255.255.255)
+		\item Empfange \textit{DHCP-Offer} von DHCP-Server mit konfigurationsparametern
+		\item Sende \textit{DHCP-Request} um IP-Adresse zu beantragen
+		\item Warte auf \textit{DHC-ACK} als aknowledgement, dass IP-Vergabe erfolgreich war
+	\end{itemize}
 
 \end{enumerate}
+
+\pagebreak
 
 \task{3}
 \begin{enumerate}[a)]
 	
-	\item 
+	\item $$\tunderset{Label}{www}.\underset{\tunderset{Hostname}{SLD}}{example}.\tunderset{TLD}{org}$$
 	
-	\item 
+	\item \begin{itemize}
+		\item \emph{Resource Records}: grundlegende Informationseinheit im DNS. \\
+		   RR-Format: \texttt{<Name> <Type> <Class> <TTL> <RDLength> <RData>}
+		\item Email bezogene Resource records werden mit 
+	\end{itemize}
 	
-	\item 
+	\item \begin{itemize}
+		\item \emph{Iterativer DNS-Lookup}: Der eingetragene DNS-Server fragt für jede Ebene des Domain-Names selbst den 
+		zugehörigen DNS-Server
+		\item \emph{Rekursiver DNS-Lookup}: Der DNS-Lookup-Request "läuft" an den entsprechenden DNS-Servern entlang,
+		bis er beim zugehörigen Server landet, dann wird die Antwort auf dem gleichen Weg zurückübertragen.
+	\end{itemize}
 	
-	\item 
+	\item Um als NAT agieren zu können, muss ein Router: 
+	\begin{itemize}
+		\item Die IP-Adressen des Absender- und Empfänger-Host kennen, und
+		\item Das Absender- und Empfänger-Port der einzelnen Requests lesen können.
+	\end{itemize}
 	
-	\item 
+	% server: 128.119.40.86
+	% Host A: 192.168.1.10
+	% Router: 192.168.1.1  (lokal)
+	%         126.13.89.67 (public)
+	\item \textbf{Pakete an den Messpunkten:} \\
+		\begin{tabular}{c|c|c|c|c}
+			Messpunkt & Absender IP   & Absender Port & Empfänger IP  & Empfänger Port \\ \hline
+			1 (req)   & 192.168.1.10  & 1234          & 128.119.40.86 & 80             \\ 
+			2 (req)   & 126.13.89.67  & 4567          & 128.119.40.86 & 80             \\ 
+			3 (resp)  & 128.119.40.86 & 80            & 126.13.89.67  & 4567           \\ 
+			1 (resp)  & 128.119.40.86 & 80            & 192.168.1.10  & 1234
+		\end{tabular}
+
+		\bigskip \textbf{NAT-Tabelle:} \\
+		\begin{tabular}{c|c|c}
+			Private IP            & Privater Port & Öffentlicher Port \\ \hline
+			192.168.1.10 (Host A) & 1234          & 4567
+		\end{tabular}
+
+%	\begin{tikzpicture}
+%		\begin{scope}
+%
+%			\draw node[rectangle,fill=black!20] (router) {Router};
+%			\draw node[rectangle,fill=black!20] (client) {Client};
+%
+%		\end{scope}
+%	\end{tikzpicture}
 
 \end{enumerate}
 
