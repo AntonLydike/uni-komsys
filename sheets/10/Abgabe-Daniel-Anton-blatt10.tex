@@ -1,0 +1,95 @@
+\input{../../preamble.tex}
+
+\pgfplotsset{compat=1.15}
+
+\renewcommand{\arraystretch}{1}
+
+\newcommand\tunderset[2]{\underset{\text{#1}}{\text{#2}}}
+
+\cfgtitle{10}
+\date{Mittwoch 22.1.2020}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}
+\begin{enumerate}[a)]
+	\item \begin{itemize}
+		\item Ein Paket adressiert an 172.20.33.66 wird vom Router R1 über das Interface \texttt{if.B} an das Zielsubnetz weitergeleitet.
+		\item Ein Paket adressiert an 172.20.72.36 wird vom Router R1 über das Interface \texttt{if.R3} an den Standard Gateway 172.20.1.10 gesendet.
+		\item Ein Paket adressiert an 172.20.67.67 wird vom Router R1 über das Interface \texttt{if.R2} an den Router R2 mit IP 172.20.1.6 weitergeleitet.
+	\end{itemize}
+	\item Die Routingtabelle von Router R1: 
+	\begin{center}\begin{tabular}{l|l|l|r}
+		\textbf{Destination}  & \textbf{Genmask}       & \textbf{Gateway}     & \textbf{Iface}  \\ \hline
+		172.20.32.0  & 255.255.255.0 & 0.0.0.0     & if.A   \\
+		172.20.33.0  & 255.255.255.0 & 0.0.0.0     & if.B   \\
+		172.20.34.0  & 255.255.255.0 & 0.0.0.0     & if.C   \\
+		172.20.35.0  & 255.255.255.0 & 0.0.0.0     & if.D   \\
+		172.20.128.0 & 255.255.255.0 & 172.20.1.18 & if.R4  \\
+		172.20.64.0  & 255.255.252.0 & 172.20.1.6  & if.R2  \\
+		default      & 0.0.0.0       & 172.20.1.10 & if.R3
+	\end{tabular}\end{center}
+
+	Kann kompakt gepublished werden:
+
+	\begin{center}\begin{tabular}{l|l|l}
+		Destination  & Genmask       & Gateway     \\ \hline
+		172.20.32.0  & 255.255.252.0 & 0.0.0.0     \\
+		172.20.128.0 & 255.255.255.0 & 172.20.1.18 \\
+		172.20.64.0  & 255.255.252.0 & 172.20.1.6  
+	\end{tabular}\end{center}
+	\item Der \emph{Routing-Algorithmus}, der Open Shortest Path First (OSPF) zugrunde liegt, 
+	ist Dijkstra, während das \emph{Routing-Protokoll} den gesamten Prozess beschreibt, auch 
+	z.B. die Link-State-Advertisments. \textbf{!reformulate}
+	\item Zwei vorteile von OSPF gegenüber RIP sind: \begin{itemize}
+		\item RIP ist begrenzt auf eine entfernung von 15 hops.
+		\item RIP reagiert nicht schnell auf Änderungen im Netzwerk.
+	\end{itemize}
+\end{enumerate}
+
+\task{2}
+\begin{enumerate}[a)]
+	\item Ein \emph{AS} ist ein zusammenschluss von Netzwerken über Router, die unter einer Administration stehen. Änderungen innerhlab eines AS sind normalerweise nicht relevant außerhalb selbigens.
+	\item Der Hauptzweck des  \emph{Border Gateway Protokolls (BGP)} ist die verbindung der einzelnen AS. Somit bildet das BGP den Kern des Internets.
+	\item Das BGP ist \emph{Policy-Basiert}, da für jede Verbindung eine Policy für den Austausch der Routen aufgestellt werden muss.
+	\item \begin{itemize}
+		\item Router $C2$ erfährt über eBGP durch Router $F2$ von Präfix $z$, da $F2$ seine eigenen routen zu seinem Provider exportiert.
+		\item Router $C2$ erfährt über OSPF durch Router $C3$ von Präfix $w$, da AS D 
+		\item AS B kündigt AS C die BGP-Route [$y$; B–E]
+		\item Von Subnetz $y$ zu Subnetz $z$ nehmen Pakete die AS-Route E-B-C-F
+		\item Von Subnetz $y$ zu Subnetz $w$ nehmen Pakete die AS-Route E-B-C-D 
+	\end{itemize}
+\end{enumerate}
+
+\task{3}
+\begin{enumerate}[a)]
+	\item Zwei Gründe für die Entwicklung von MLPS sind:
+	\begin{itemize}
+		\item Beschleunigte Vermittlung und Weiterleitung von Dateneinheiten.
+		\item Differenzierte Behandlung von Datenströmen und vorhersagbare QoS.
+	\end{itemize}
+	\item { \hfill 
+	\begin{tabular}{p{11.2cm}cc}
+													& Korrekt & Falsch \\
+		MPLS arbeitet zwischen den Schichten 
+		2 und 3 des OSI-Schichtenmodells			& $\bigotimes$   & $\bigcirc$ \\ \\
+		Der MPLS-Label enthält die IP-Zieladresse 
+		der Label Edge Router						& $\bigcirc$   & $\bigotimes$     \\ \\
+		An einem Datenpaket können gleichzeitig 
+		mehrere Label angehängt werden				& $\bigotimes$   & $\bigcirc$     \\ \\
+		Das Protokoll \emph{Forwarding Equivalent 
+		Class} wird zur Signalisierung der MPLS
+		Labels verwendet							& $\bigcirc$   & $\bigotimes$     
+	\end{tabular}}
+	\item Ein \emph{Label Edge Router} in einem MPLS-Netz ist die Schnitstelle zwischen MPLS-Netzen und \begin{itemize}
+		\item Anderes AS-Netzen
+		\item Subnetzen
+		\item Anderen MPLS-Domänen im gleichen AS-Netz
+	\end{itemize}
+	\item -
+\end{enumerate}
+
+\pointsttl{3}
+\end{document}

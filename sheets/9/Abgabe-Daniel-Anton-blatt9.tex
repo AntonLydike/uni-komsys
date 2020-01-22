@@ -95,7 +95,7 @@
 	% Router: 192.168.1.1  (lokal)
 	%         126.13.89.67 (public)
 	\item \textbf{Pakete an den Messpunkten:} \\
-		\begin{tabular}{c|c|c|c|c}
+		\begin{tabular}{c||c|c||c|c}
 			Messpunkt & Absender IP   & Absender Port & Empfänger IP  & Empfänger Port \\ \hline
 			1 (req)   & 192.168.1.10  & 1234          & 128.119.40.86 & 80             \\ 
 			2 (req)   & 126.13.89.67  & 4567          & 128.119.40.86 & 80             \\ 
@@ -109,14 +109,14 @@
 			192.168.1.10 (Host A) & 1234          & 4567
 		\end{tabular}
 
-%	\begin{tikzpicture}
-%		\begin{scope}
-%
-%			\draw node[rectangle,fill=black!20] (router) {Router};
-%			\draw node[rectangle,fill=black!20] (client) {Client};
-%
-%		\end{scope}
-%	\end{tikzpicture}
+	\begin{tikzpicture}
+		\begin{scope}
+
+			\draw node[rectangle,fill=black!20] (router) {Router};
+			\draw node[rectangle,fill=black!20] (client) {Client};
+
+		\end{scope}
+	\end{tikzpicture}
 
 \end{enumerate}
 
